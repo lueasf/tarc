@@ -145,4 +145,28 @@ and information from the source sequence (cross-attention), while remaining stab
 \
 
 == Multi-Head Attention : Parallel Processing
+The Multi-Head Attention mechanism is implemented in the ` multihead.py ` file.
+
+The 'head' concept is about _splitting the model's attention_ mechanism into multiple parallel attention layers, each focusing on different parts of the input sequence.
+Each head works with a _subset_ of the model's total dimensionality (d_model / num_heads). After processing, the outputs of all heads are concatenated and linearly transformed to produce the final output.
+
+In the MultiHeadedAttention class, we create a list of SelfAttention for each head. 
+Each SelfAttention takes the same inputs (query, key, value, mask) but learn its own weights.
+
+Therefore, each head can _focus on different aspects_ of the input sequence, capturing a richer set of relationships and dependencies. 
+Finally, the outputs from all heads are concatenated and passed through a linear layer to _combine the information_.
+
+The forward method use query, key and value. They are matrices computed from the input embeddings. 
+
+#underline[Matrices] :
+- Query (Q): A vector calculated for each token, which is used to search for relevant information in other tokens.
+- Key (K): A vector calculated for each token, which represents the content of that token. This is used to match against the Query.
+- Value (V): A vector calculated for each token, which contains the actual information to be transmitted if the Key matches the Query.
+
+We can vizualize the matrices and similarities with colors for examples.
+
+\
+
+== Self-Attention : Core Mechanism
+The Self-Attention mechanism is implemented in the ` selfattention.py ` file.
 
