@@ -1,6 +1,7 @@
 #import "@preview/fletcher:0.5.5": *
 #import "@preview/codly:1.2.0": *
 #import "@preview/codly-languages:0.1.7": *
+#import "@preview/numty:0.0.5" as nt
 
 = TARC : Transformer Architecture Implementation in Python
 
@@ -170,3 +171,19 @@ We can vizualize the matrices and similarities with colors for examples.
 == Self-Attention : Core Mechanism
 The Self-Attention mechanism is implemented in the ` selfattention.py ` file.
 
+This is a mechanism that allows each token to "look at" other tokens in the sequence to gather relevant information.
+
+The key formula is :  _Attention(Q, K, V) = softmax(Q· $K^T$ / $ sqrt(d_k)$) · V_
+
+Where: 
+- Q (Query), K (Key), V (Value) are matrices derived from the input embeddings.
+- d_k is the dimension of the Key vectors (used for scaling).
+- softmax is a function that converts scores into probabilities.
+
+In the product Q·Kᵀ, we compute the similarity between each Query and all Keys. 
+Therefore, we obtain a score matrix that indicates _how much focus_ each token should give to every other token (The attention).
+
+In the end, the new representation for each token is a weighted sum of the Value vectors, 
+which means that each token's new representation incorporates information from other tokens based on their relevance.
+
+-- Note : We take Q and K, multiply them, scale the result, apply softmax  and multiply by V.
