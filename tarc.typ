@@ -187,3 +187,25 @@ In the end, the new representation for each token is a weighted sum of the Value
 which means that each token's new representation incorporates information from other tokens based on their relevance.
 
 -- Note : We take Q and K, multiply them, scale the result, apply softmax  and multiply by V.
+
+\
+
+== Feed-Forward Network
+The Feed-Forward Network (FFN) is implemented in the ` feedforward.py ` file.
+
+The Feed-Forward Network (FFN) is applied independently to each position in the sequence.  
+It consists of two linear transformations with a ReLU activation in between.
+
+The core formula is:  
+FFN(x) = max(0, x W₁ + b₁) W₂ + b₂  
+
+\ 
+
+== Positional Encoding
+Since the transformer architecture does not inherently understand the order of tokens in a sequence (like RNNs do), we add positional encodings (1st, 2nd, 3rd, etc.) to the input embeddings to provide this information.
+
+For a position pos and dimension i, the positional encoding is defined as:
+- PE(pos, 2i) = sin(pos / 10000^(2i/d_model))
+- PE(pos, 2i+1) = cos(pos / 10000^(2i/d_model))
+
+Even indices use the sine function and odd indices use the cosine function.
