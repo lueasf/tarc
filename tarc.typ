@@ -1,17 +1,30 @@
 #import "@preview/fletcher:0.5.5": *
 #import "@preview/codly:1.2.0": *
 #import "@preview/codly-languages:0.1.7": *
-#import "@preview/numty:0.0.5" as nt
 
 = TARC : Transformer Architecture Implementation in Python
 
+\
 
 "Attention is All You need" is the paper that introduced the Transformer architecture, which has since revolutionized the field of natural language processing. The researchers did not discovered the Self-Attention mechanism, but they were the first to build an architecture solely based on it, discarding the previously dominant Recurrent Neural Networks (RNNs) and Convolutional Neural Networks (CNNs).
 
+Quick history recall :
+- 1988 : First RNN 
+- 1997 : LSTM (Long Short-Term Memory) to solve the vanishing gradient problem in RNNs
+- 2017 : Paper "Attention is All You Need"
+- 2018 : BERT (Bidirectional Encoder Representations from Transformers) by Google
+- 2018 : GPT (Generative Pre-trained Transformer) by OpenAI
+- 2019 : GPT-2 by OpenAI
+- 2022 : ChatGPT based on GPT-3.5 by OpenAI
+
+RNNs had limitations such as difficulty in capturing long-range dependencies and being inherently sequential, which made them slow to train. The Transformer architecture uses parallel processing and self-attention mechanisms to overcome these issues.
+
+As the RNNs are sequential the string "The black cat is in the kitchen" will be processed word by word,
+"Le noir chat est dans la cuisine" in French, which is wrong. The trasnformer, on the other hand, can look at the entire sentence and understand the context better.
 
 #pagebreak()
 
-== Glossary
+== Glossary (AI-generated)
 
 This glossary summarizes key terms related to the Transformer architecture and training.
 
@@ -53,7 +66,7 @@ This glossary summarizes key terms related to the Transformer architecture and t
 #figure(
   image("transformer.png", width: 120%),
   caption: [
-    transformer architecture
+    transformer architecture from the paper
   ]
 )
 
@@ -209,3 +222,40 @@ For a position pos and dimension i, the positional encoding is defined as:
 - PE(pos, 2i+1) = cos(pos / 10000^(2i/d_model))
 
 Even indices use the sine function and odd indices use the cosine function.
+
+\
+
+== Transformer Class
+The overall Transformer model is implemented in the ` transformer.py ` file.
+
+It contains the constructor method, the forward method and a method to generate output.
+
+
+
+== Training and Inference
+
+=== Training
+
+=== Inference
+
+#pagebreak()
+
+== Main Sources
+
+Attention is All You Need paper by Googles's researchers :
+https://arxiv.org/abs/1706.03762
+
+Machine Learning repository by DorsaRoh :
+https://github.com/DorsaRoh/Machine-Learning/tree/main/Transformer
+
+Attention is all you need (Transformer) - Model explanation (including math), Inference and Training by Umar Jamil :
+https://youtu.be/bCz4OMemCcA?si=zXW2hw1Gg5HFcKer
+
+Coding a Transformer from scratch on PyTorch, with full explanation, training and inference by Umar Jamil :
+https://www.youtube.com/watch?v=ISNdQcPhsts
+
+I vizualized the Attention mechanism in the Transformers by Gal Lahat
+https://youtu.be/RNF0FvRjGZk?si=lEUSs2OJq44Qrvl2
+
+Understanding Transformers in less than 20 minutes by LeCoinStat (French) :
+https://www.youtube.com/watch?v=ujkc11DoMgk
